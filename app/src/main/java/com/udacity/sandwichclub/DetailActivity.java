@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -11,6 +12,11 @@ import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
 public class DetailActivity extends AppCompatActivity {
+    //define textviews
+    TextView alsoKnownAs;
+    TextView description;
+    TextView origin;
+    TextView ingredients;
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
@@ -49,6 +55,36 @@ public class DetailActivity extends AppCompatActivity {
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
+        //find the text views
+        alsoKnownAs = findViewById(R.id.also_known_tv);
+        description = findViewById(R.id.description_tv);
+        origin =  findViewById(R.id.origin_tv);
+        ingredients = findViewById(R.id.ingredients_tv);
+
+        //assign sandwich variables to them
+        String alsoKnownAsString = "";
+        for (String aka: sandwich.getAlsoKnownAs()) {
+            alsoKnownAsString += aka + ", ";
+        }
+        if(!alsoKnownAsString.equals("")){
+            alsoKnownAsString = alsoKnownAsString.substring(0, alsoKnownAsString.length()-2);
+        }
+        alsoKnownAs.setText(alsoKnownAsString+"\n");
+
+        description.setText(sandwich.getDescription()+"\n");
+
+        origin.setText(sandwich.getPlaceOfOrigin()+"\n");
+
+        String ingredientsAsString = "";
+        for (String ing: sandwich.getIngredients()) {
+            ingredientsAsString += ing + ", ";
+        }
+        if(!ingredientsAsString.equals("")){
+            ingredientsAsString = ingredientsAsString.substring(0, ingredientsAsString.length()-2);
+        }
+        ingredients.setText(ingredientsAsString+"\n");
+
+
     }
 
     private void closeOnError() {
