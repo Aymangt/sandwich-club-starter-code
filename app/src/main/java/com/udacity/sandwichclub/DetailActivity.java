@@ -67,8 +67,9 @@ public class DetailActivity extends AppCompatActivity {
             alsoKnownAsString += aka + ", ";
         }
         if(!alsoKnownAsString.equals("")){
-            alsoKnownAsString = alsoKnownAsString.substring(0, alsoKnownAsString.length()-2);
-        }
+            alsoKnownAsString = alsoKnownAsString.substring(0, alsoKnownAsString.length()-2)+".";
+        }else
+            alsoKnownAsString = "   ---";
         alsoKnownAs.setText(alsoKnownAsString+"\n");
 
         description.setText(sandwich.getDescription()+"\n");
@@ -80,7 +81,7 @@ public class DetailActivity extends AppCompatActivity {
             ingredientsAsString += ing + ", ";
         }
         if(!ingredientsAsString.equals("")){
-            ingredientsAsString = ingredientsAsString.substring(0, ingredientsAsString.length()-2);
+            ingredientsAsString = ingredientsAsString.substring(0, ingredientsAsString.length()-2)+".";
         }
         ingredients.setText(ingredientsAsString+"\n");
 
